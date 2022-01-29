@@ -1,5 +1,29 @@
 import express from "express";
+import fs from "fs";
+import fsAsync from "fs/promises";
 const app = express();
+
+app.get("/file1", (req, res) => {
+  // try {
+  //   const data = fs.readFileSync("/file.txt");
+  // } catch (error) {
+  //   res.status(404).send("File not found");
+  // }
+  // 동기 => try catch로 잡거나 어쨌든 안해도 안전망에 체크됨.
+  fs.readFile("/file1.txt", (err, data) => {
+    if (err) {
+      res.status(404).send("File not found");
+    }
+  });
+  // 비동기 => 내부적 에러이므로 안전망에 걸리지 않음. 콜백함수 내에서 문제가 생기기 때문
+});
+app.get("/file2", (req, res) => {
+  fsAsync
+    .readFile("/file.txt")
+    .then((data) => {})
+    .catch((error) => {});
+  //내부에서 에러 캐치하므로 외부적으로 알 수 없음!
+});
 
 app.get("/:id", (req, res, next) => {
   console.log("get");
@@ -21,11 +45,11 @@ app.post("/:id", (req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  res.statusCode(404);
+  res.sendStatus(404);
 });
 app.use((error, req, res, next) => {
   console.error(error);
-  res.statusCode(500);
+  res.sendStatus(500);
 });
 
 app.listen(8080); //server port=8080
