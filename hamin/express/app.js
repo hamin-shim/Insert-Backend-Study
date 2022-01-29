@@ -22,7 +22,7 @@ app.get("/file2", (req, res) => {
     .readFile("/file.txt")
     .then((data) => {})
     .catch((error) => {});
-  //내부에서 에러 캐치하므로 외부적으로 알 수 없음!
+  //내부에서 에러 캐치하므로 외부적으로 알 수 없음! 비동기는 아무리 try catch로 해도 안됨. 내부 catch 구조로 하는 수 밖에 없음.
 });
 
 app.get("/:id", (req, res, next) => {
