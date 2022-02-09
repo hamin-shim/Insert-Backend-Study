@@ -8,7 +8,7 @@ let tweets = [
         url: 'https://werwer.com',
     },
     {
-        id: '2',
+        id: '4',
         text: '화이팅22!',
         createdAt: Date.now().toString(),
         name: 'Ellie',
