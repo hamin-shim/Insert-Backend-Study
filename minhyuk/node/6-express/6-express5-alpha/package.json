@@ -1,0 +1,16 @@
+{
+  "name": "6-express5-alpha",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app-alpha.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.0.0-alpha.8"
+  }
+}
